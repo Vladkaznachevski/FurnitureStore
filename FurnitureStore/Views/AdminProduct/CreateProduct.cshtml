@@ -1,0 +1,37 @@
+﻿@model FurnitureStore.Models.ViewModels.ProductViewModel
+@{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h1>Добавление нового продукта</h1>
+    </div>
+    <div class="card-body">
+        <form asp-controller="AdminProduct" asp-action="CreateProduct" method="post">
+            <div class="mb-3">
+                <label class="form-label">Выберите категорию</label>
+                <br />
+                @if (Model.Categories != null)
+                {
+                    @Html.DropDownListFor(m => m.Selected,  Model.Categories.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }) , "Выберите Категорию", new { @class = "css-class" })
+                }
+                <br />
+                <label class="form-label">Выберите завод</label>
+                <br />
+                @if (Model.Manufactories != null)
+                {
+                    @Html.DropDownListFor(m => m.Selected2, Model.Manufactories.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }), "Выберите Завод", new { @class = "css-class" })
+                }
+                <br />
+                <label asp-for="Name" class="form-label">Название</label>
+                <input type="text" class="form-control" asp-for="Name">
+
+                <label asp-for="Price" class="form-label">Цена</label>
+                <input type="text" class="form-control" asp-for="Price">
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+</div>

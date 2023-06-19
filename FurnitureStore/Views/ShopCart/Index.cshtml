@@ -1,0 +1,32 @@
+﻿@model FurnitureStore.Models.ViewModels.ShopCartViewModel
+
+
+
+<p>Это ваша Корзина</p>
+
+<div class="container">
+
+    @foreach (var el in Model.ShopCartRepository.listShopItems)
+    {
+        Random random = new Random();
+        int red = random.Next(256);
+        int green = random.Next(256);
+        int blue = random.Next(256);
+        string hexColor = String.Format("#{0:X2}{1:X2}{2:X2}", red, green, blue);
+
+        
+        <div class ="alert alert-warning mt-3" style="color:@hexColor;">
+            <b>@el.Product.Name</b>
+
+        </div>
+
+    }
+
+    <a class="btn btn-dark" asp-controller="Home" asp-action="Index">
+        К ассортименту
+    </a>
+
+    <a class="btn btn-dark" asp-controller="Order" asp-action="Checkout">
+        Оплатить
+    </a>
+</div>

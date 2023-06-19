@@ -1,0 +1,38 @@
+﻿@using Data;
+@using Services;
+@model List<Data.Product>
+
+<div class="text-center">
+    <h1 class="display-4">Ассортимент</h1>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Product item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+
+                            <a class="btn btn-danger" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@item.Id">
+                                добавить в корзину
+                            </a>
+                        </div>
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>
